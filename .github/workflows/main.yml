@@ -33,6 +33,6 @@ jobs:
           target_commitish: ${{ github.sha }}
           prerelease: true
           files: |
-            target/*.jar
-            !target/*-sources.jar
-            !target/*-javadoc.jar
+            build/*.jar
+            !build/*-sources.jar
+            !build/*-javadoc.jar
