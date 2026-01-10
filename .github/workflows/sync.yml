@@ -16,18 +16,12 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Sync dev
-        run: |
+      - run: |
           git remote add upstream https://github.com/magemonkeystudio/genesis.git
           git fetch upstream --prune
           git checkout dev || git checkout -b dev origin/dev
           git reset --hard upstream/dev
-          git push origin dev --force
-
-      - name: Sync main
-        run: |
-          git remote add upstream https://github.com/magemonkeystudio/genesis.git
-          git fetch upstream --prune
-          git checkout main || git checkout -b main origin/main
-          git reset --hard upstream/main
-          git push origin main --force
+          git checkout upstream/dev -- .
+          git restore --source=HEAD --staged --worktree .github/workflows || true
+          git add -A
+          git commit -m "S
